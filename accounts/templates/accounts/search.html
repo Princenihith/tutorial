@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+<title>SEARCH</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>SEARCH</h1>
+<div>
+    <form method="GET" enctype="multipart/form-data" class="form-inline my-2 my-lg-0" action="{% url 'accounts:search' %}">
+
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='q'>
+      <select name="cars">
+		  <option value="1">hairdresser</option>
+		  <option value="2">product</option>
+		  <option value="3">post</option>
+	  </select>
+      <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+    </form>
+    </div>
+    <div>
+    <br>
+      <h1>QUERY</h1>
+      {% if re %}
+        {% for q in re %}
+        <a href="{% url 'home:Post_detail' pk=q.id %}">{{q.id}}.{{ q.post }}
+            <br>
+            <img src="{{ q.image.url}}"  width="240" height="auto">
+            <p>Posted by {{ q.user.get_full_name }} on {{ q.created }}</p>
+            
+        {%endfor%}
+        {% endif %}
+      {% if n %}
+        {% for l in n %}
+            <p> {{ l }} </p>
+            
+        {%endfor%}
+        {% endif %}
+
+        {% if p %}
+        {% for q in p %}
+        <a href="{% url 'home:Post_detail' pk=q.id %}">{{q.id}}.{{ q.post }}
+            <br>
+            <img class="img-rounded" src="{{MEDIA_URL}}{{ q.image.url }}" width = 240 >
+            <p>Posted by {{ q.user.get_full_name }} on {{ q.created }}</p>
+            
+        {%endfor%}
+        {% endif %}
+
+        {% if po %}
+        {% for q in po %}
+        <a href="{% url 'home:Post_detail' pk=q.id %}">{{q.id}}.{{ q.post }}
+            <br>
+            <img class="img-rounded" src="{{MEDIA_URL}}{{ q.image.url }}" width = 240 >
+            <p>Posted by {{ q.user.get_full_name }} on {{ q.created }}</p>
+            
+        {%endfor%}
+        {% endif %}
+      </div>
+</div>
+
+{% endblock %}

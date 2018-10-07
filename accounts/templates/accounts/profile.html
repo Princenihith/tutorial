@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%  load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+<title>PROFILE</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Profile</h1>
+<p>
+	username:{{user}}<br>
+	first name:{{user.first_name}}<br>
+	last name:{{user.last_name}}<br>
+	email:{{user.email}}<br>
+	USER :{{ request.user.userprofile}}<br>
+	DESCRIPTION :{{ request.user.userprofile.description}}<br>
+	WEBSITE :{{ request.user.userprofile.website}}<br>	
+	phome :{{ request.user.userprofile.phone}}<br>
+	<img src="{{ request.user.userprofile.image.url }}" width="240">
+</p>
+</div>
+{% endblock %}
+

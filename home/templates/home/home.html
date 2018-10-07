@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block body %} 
+    <form enctype="multipart/form-data" class="form-inline my-2 my-lg-0" action=".">
+        {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='q'>
+      <button class="btn btn-outline-success my-2 my-sm-0" name="btn1" type="submit">Search</button>
+    </form>
+<div class="container">
+    <div class="col-md-8">
+        <h2>Home</h2>
+        <form  method="POST" enctype="multipart/form-data" type = 'file'>
+            {% csrf_token %}
+            {{ form.post }}
+            {{ form.image }}
+            <br>
+            <button name="btn" type="submit">Submit</button>
+        </form>
+        {%if post_list %}
+        <h1>QUERY</h1>
+        {% for q in post_list %}
+        <a href="{% url 'home:Post_detail' pk=post.id %}">{{q.id}}.{{ q.post }}
+         <br>
+            <img src="{{ q.image.url }}" width="240" height="auto">
+            <p>Posted by {{ q.user.get_full_name }} on {{ q.created }}</p>
+                  {{comments.count}} comment{{comments|pluralize}}<br>
+              {% for comment in post.comment_set.all %}
+
+                <small><b>{{ comment.comment }}</b></small>
+                <p>commented by {{ comment.user.get_full_name }} on {{ comment.created }}</p>            
+           {% endfor %}
+        {%endfor%}
+        
+        {%else%}
+        <h2>{{ text }}</h2>
+        {% for post in posts %}
+           <a href="{% url 'home:Post_detail' pk=post.id %}"> <h1>{{post.id}}.{{ post.post }}</h1></a>
+            <br>
+            <img src="{{ post.image.url }}" width = 240 >
+            <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
+        <!-- <form action="{% url 'home:cmnt' pk=post.id %}" method="POST" enctype="multipart/form-data" type = 'file'>
+            {% csrf_token %}
+            {{ form1.content }}
+            <br>
+            <button type="submit">Submit</button>
+        </form> -->
+                {{comments.count}} comment{{comments|pluralize}}<br>
+              {% for comment in post.comment_set.all %}
+
+                <small><b>{{ comment.comment }}</b></small>
+                <p>commented by {{ comment.user.get_full_name }} on {{ comment.created }}</p>            
+           {% endfor %}
+        {% endfor %}
+
+    </div>
+    {%endif%}
+    
+</div>
+{% endblock %}

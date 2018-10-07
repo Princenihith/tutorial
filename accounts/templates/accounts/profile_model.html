@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%  load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/main.css' %}">
+<title>PROFILE MODEL</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Profile MODEL</h1>
+<p>
+	username:{{user}}<br>
+	<p>user:{{ UserProfile.description }}</p>
+	<p><img src="{{ user.UserProfile.image.url }}" width="240"></p>
+</p>
+</div>
+{% endblock %}
+

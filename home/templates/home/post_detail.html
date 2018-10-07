@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block body %} 
+<div class="container">
+    <div class="col-md-8">
+            <a href="{ % url 'home:Post_detail' pk=post.id %}"> <h1>{{post.id}}.{{ post.post }}</h1></a>
+            <br>
+            <img src="{{ post.image.url }}" width = 240 >
+            <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>      
+    </div>
+<div id="like-section">
+  {% include 'home/like_section.html' %}
+</div>
+{% if not post.restrict_comment %}
+  <div class="main-comment-section">
+    {% include 'home/comments.html' %}
+  </div>
+{% endif %}
+
+    
+</div>
+{% endblock %}

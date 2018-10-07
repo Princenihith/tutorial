@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block head %}
+<title>login</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/style.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>LOGIN</h1>
+<div class="jumbotron">
+<p>You can login here</p>
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p}}
+	<button type="submit">login</button>
+
+</form>
+</div>
+</div>
+
+{% endblock %}
+
+

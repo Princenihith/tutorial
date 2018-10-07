@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}
+<h2>{{ wine.name }}</h2>
+<h5>{{ wine.review_set.count }} reviews ({{ wine.average_rating | floatformat }} average rating)</h5>
+{% endblock %}
+
+{% block body %}
+<h3>Recent reviews</h3>
+
+{% if wine.review_set.all %}
+<div class="row">
+    {% for review in wine.review_set.all %}
+    <div class="col-xs-6 col-lg-4">
+        <h2><a href="{% url 'reviews:wine_detail' wine.id %}">
+        {{ wine.name }}
+        </a></h2>
+        <em>{{ review.comment }}</em>
+        <h6>Rated {{ review.rating }} of 5 by {{ review.user}}</h6>
+        <h5><a href="{% url 'reviews:review_detail' review.id %}">
+        Read more
+        </a></h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No reviews for this wine yet</p>
+{% endif %}
+
+<h3>Add your review</h3>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<div class="form-group row">
+      <form action="{% url 'reviews:add_review' wine.id %}" method="post" class="form">
+        {% csrf_token %}
+        
+        {{ form.comment }}
+        {{ form.rating }}
+        {% if request.user.is_authenticated %}
+          <input type="submit" value="Submit" class="btn btn-outline-success">
+        {% else %}
+          <input type="submit" value="Submit" class="btn btn-outline-success" disabled>
+        {% endif %}
+      </form>
+    </div>
+
+
+{% endblock %}
