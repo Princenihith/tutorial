@@ -11,9 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tutorial1 COPY fucked up trying to be perfect.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tutorial.settings")
 
 application = get_wsgi_application()
 
-from whitenoise.django import DjangoWhiteNoise
-application = DjangoWhiteNoise(application)
+# from whitenoise.django import DjangoWhiteNoise
+# application = DjangoWhiteNoise(application)

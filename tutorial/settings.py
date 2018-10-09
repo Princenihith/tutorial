@@ -23,7 +23,7 @@ print(BASE_DIR)
 SECRET_KEY = 'yv(r0*#ndu=fh8kz3&t(4)l9@oy17k#hnzkv(c!(qq4%d520$='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tutorial1 COPY fucked up trying to be perfect.wsgi.application'
+WSGI_APPLICATION = 'tutorial.wsgi.application'
 
 
 # Database
@@ -170,4 +170,5 @@ LOGIN_EXEMPT_URLS = [
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# DATABASES['default'].update(db_from_env)
+DATABASES = { 'default': dj_database_url.config() }
