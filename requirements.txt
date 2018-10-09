@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 absl-py==0.2.1
 alabaster==0.7.10
 asn1crypto==0.24.0
@@ -103,7 +104,6 @@ PyQt5==5.9.2
 python-dateutil==2.7.2
 python3-openid==3.1.0
 pytz==2018.3
-pywin32==223
 pywinpty==0.5.1
 PyYAML==3.12
 pyzmq==17.0.0
@@ -150,3 +150,24 @@ whitenoise==4.1
 widgetsnbextension==3.2.1
 Willow==1.0
 wrapt==1.10.11
+=======
+django ~> 1.11.15
+Faker==0.8.10
+MySQL-python==1.2.5
+Pillow==5.0.0
+argparse==1.2.1
+certifi==2018.1.18
+chardet==3.0.4
+idna==2.7
+oauthlib==2.0.6
+python-dateutil==2.6.1
+python-openid==2.2.5
+pytz==2017.3
+requests==2.18.4
+requests-oauthlib==0.8.0
+six==1.11.0
+social-auth-app-django==2.1.0
+social-auth-core==1.7.0
+text-unidecode==1.1
+urllib3==1.22
+>>>>>>> c21dc025303c3fb9ab6cf758df5bb12eb943b1bb
